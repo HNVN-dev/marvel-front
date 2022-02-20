@@ -1,0 +1,9 @@
+.grid-catalog-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 15px;
+  width: 80%;
+  margin: 20px auto;
+}

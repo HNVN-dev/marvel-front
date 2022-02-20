@@ -1,0 +1,65 @@
+.comics-character-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 90%;
+  gap: 15px;
+}
+
+.character-img img {
+  width: 70%;
+  height: auto;
+}
+
+.character-introduction {
+  display: flex;
+  width: 90%;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.character-name-description {
+  margin-left: 20px;
+}
+.character-name-description h1 {
+  font-size: 2.5rem;
+  font-weight: normal;
+  text-align: center;
+  margin: 2rem 0;
+}
+.character-name-description p {
+  text-align: center;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+section h2 {
+  font-size: 2rem;
+}
+
+@media screen and (max-width: 1272px) {
+  .character-introduction {
+    flex-direction: column-reverse;
+  }
+
+  .character-img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  .character-img img {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .character-img img {
+    width: 100%;
+  }
+}

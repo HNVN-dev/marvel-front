@@ -1,0 +1,176 @@
+.comics-card-container {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  width: calc(20% - 15px);
+  min-width: 20%;
+  margin: 1rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1640px) {
+  .comics-card-container {
+    width: calc(26.6666666667% - 15px);
+  }
+}
+
+@media screen and (max-width: 1318px) {
+  .comics-card-container {
+    width: calc(40% - 15px);
+  }
+}
+@media screen and (max-width: 891px) {
+  .comics-card-container {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 604px) {
+  .comics-card-container {
+    width: 80%;
+  }
+}
+
+.comics-card-img-container img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0;
+  border-radius: 3px;
+}
+
+.comics-card-front,
+.comics-card-back {
+  position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  -webkit-transition: -webkit-transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transition: -webkit-transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+  -o-transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1),
+    -webkit-transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  text-align: center;
+  min-height: 280px;
+  height: 400px;
+  width: 100%;
+  min-width: 300px;
+  border-radius: 3px;
+
+  font-size: 1.5rem;
+}
+
+.comics-card-back {
+  background: #202020;
+  background: -webkit-linear-gradient(45deg, #444444 0%, #292929 100%);
+  background: -o-linear-gradient(45deg, #444444 0%, #292929 100%);
+  background: linear-gradient(45deg, #444444 0%, #292929 100%);
+}
+
+.comics-card-front:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  content: "";
+  display: block;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 3px;
+}
+.comics-card-container:hover .comics-card-front,
+.comics-card-container:hover .comics-card-back {
+  -webkit-transition: -webkit-transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transition: -webkit-transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+  -o-transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1),
+    -webkit-transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.comics-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.comics-card-inner {
+  -webkit-transform: translateY(-50%) translateZ(60px) scale(0.94);
+  transform: translateY(-50%) translateZ(60px) scale(0.94);
+  top: 50%;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  padding: 2rem;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: 1px solid transparent;
+  -webkit-perspective: inherit;
+  perspective: inherit;
+  z-index: 2;
+}
+
+.comics-card-container .comics-card-back {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.comics-card-container .comics-card-front {
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.comics-card-container:hover .comics-card-back {
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.comics-card-container:hover .comics-card-front {
+  -webkit-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.comics-card-inner p {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  position: relative;
+  color: #f9f9f9;
+}
+
+.comics-card-front .comics-card-inner p:after {
+  content: "";
+  width: 4rem;
+  height: 2px;
+  position: absolute;
+
+  display: block;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: -0.75rem;
+}
+
+.comics-card-front .comics-card-inner span {
+  font-family: "Montserrat";
+  font-weight: 300;
+}
+
+.fav-button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin: 15px;
+}

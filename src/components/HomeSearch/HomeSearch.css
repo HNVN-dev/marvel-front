@@ -1,0 +1,32 @@
+.home-search-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  width: 95%;
+  top: -350px;
+  margin: 20px 0;
+  transition: 0.5s;
+}
+
+.home-search-container a {
+  color: #161616;
+}
+
+.active {
+  top: 0;
+}
+
+.separator {
+  margin: 0 10px;
+}
+
+.to-characters,
+.to-comics {
+  font-size: 1.2rem;
+}
+
+.to-characters:hover,
+.to-comics:hover {
+  opacity: 0.5;
+}

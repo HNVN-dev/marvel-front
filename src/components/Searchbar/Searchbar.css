@@ -1,0 +1,23 @@
+.searchbar-container {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  width: 95%;
+  top: -300px;
+  margin: 20px 0;
+  transition: 0.5s;
+  z-index: 2000;
+  opacity: 1;
+}
+
+.searchbar-container input {
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+  background: none;
+  font-size: 1.6rem;
+}
+
+.active {
+  top: 0;
+}

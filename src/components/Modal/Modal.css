@@ -1,0 +1,149 @@
+.login-form-container,
+.signup-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  width: 400px;
+  z-index: 9999;
+}
+
+.signup-form-container h3 {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: rgb(228, 82, 82);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.signup-email-input,
+.signup-password-input,
+.login-email-input,
+.login-password-input {
+  outline: none;
+  padding: 10px;
+  width: 90%;
+  border-width: 1px;
+  border-radius: 3px;
+  font-size: 1rem;
+}
+
+.signup-submit-input,
+.login-submit-input {
+  padding: 10px;
+  width: 90%;
+  margin-bottom: 20px;
+  background-color: rgb(252, 57, 57);
+  border: 1px solid rgb(252, 57, 57);
+  color: #f9f9f9;
+  cursor: pointer;
+  transition: 0.6s;
+}
+.signup-submit-input:hover,
+.login-submit-input:hover {
+  opacity: 0.8;
+}
+
+.lost-account-username {
+  display: flex;
+  justify-content: flex-end;
+  width: 90%;
+  margin-bottom: 40px;
+  font-size: 0.9rem;
+  color: rgb(252, 57, 57);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.signup-form-container input[type="email"],
+.signup-form-container input[type="password"],
+.login-form-container input[type="email"],
+.login-form-container input[type="password"] {
+  margin-bottom: 10px;
+  border: 1px solid rgb(158, 158, 158);
+}
+.signup-form-container input[type="email"]::placeholder,
+.signup-form-container input[type="password"]::placeholder,
+.login-form-container input[type="email"]::placeholder,
+.login-form-container input[type="password"]::placeholder {
+  color: rgb(158, 158, 158);
+}
+
+.signup-close-btn,
+.login-close-btn {
+  border: none;
+  padding: 10px;
+  margin-left: 85%;
+  border-radius: 1000px;
+  background-color: var(--mainWhite);
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.login-close-btn {
+  position: absolute;
+  bottom: 430px;
+  color: grey;
+}
+
+.signup-close-btn {
+  position: absolute;
+  bottom: 350px;
+  color: grey;
+}
+
+.signup-buttons {
+  width: 100%;
+  margin-bottom: 15px;
+}
+.signup-buttons button {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px 14px;
+  border: 1px solid rgb(158, 158, 158);
+  font-size: 1rem;
+}
+
+.logo-modal-container {
+  margin: 40px 0;
+}
+
+.logo-modal-container img {
+  width: 150px;
+}
+
+.btn-modal-container {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  border-top: 1px solid rgba(128, 128, 128, 0.281);
+  margin-bottom: 10px;
+}
+
+.btn-modal-container button {
+  margin-top: 20px;
+  padding: 12px 27px;
+  background: none;
+  cursor: pointer;
+}
+
+.back-sign-in {
+  margin-left: 5px;
+  color: rgb(228, 82, 82);
+  cursor: pointer;
+}

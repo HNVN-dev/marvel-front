@@ -1,0 +1,7 @@
+.comics-grid-catalog-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 90%;
+  gap: 15px;
+}

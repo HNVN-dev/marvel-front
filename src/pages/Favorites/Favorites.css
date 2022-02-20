@@ -1,0 +1,46 @@
+.user-favorites-container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.user-favorites-container h2 {
+  margin: 20px 0;
+}
+
+.user-favorites {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.user-favorites-container h2 {
+  text-align: center;
+}
+
+.nothing-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.nothing-container h2 {
+  margin: 20px 0;
+}
+
+/* Favorites page */
+
+.characters-or-comics {
+  display: flex;
+  align-items: center;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.separator {
+  font-size: 1.4rem;
+}
+.selected {
+  color: red;
+}

@@ -1,0 +1,22 @@
+footer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.logo-container {
+  height: 60px;
+}
+
+.footer-credit {
+  margin-top: 40px;
+}
