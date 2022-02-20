@@ -50,6 +50,8 @@
 .comics-intro-text h3 {
   font-size: 2rem;
   margin-bottom: 30px;
+  text-align: center;
+  width: 100%;
 }
 .characters-intro-text button,
 .comics-intro-text button {
@@ -65,4 +67,38 @@
 .comics-intro-text button:hover {
   background-color: #161616;
   color: #f9f9f9;
+}
+
+@media screen and (max-width: 860px) {
+  .characters-hero {
+    flex-direction: column-reverse;
+  }
+  .comics-hero {
+    flex-direction: column;
+  }
+
+  .characters-hero,
+  .comics-hero {
+    text-align: center;
+  }
+
+  .comics-img-container {
+    width: 80%;
+  }
+
+  .characters-intro-text,
+  .comics-intro-text {
+    margin-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 632px) {
+  .characters-img-container,
+  .comics-img-container {
+    width: 90%;
+  }
+  .characters-img-container img,
+  .comics-img-container img {
+    width: 100%;
+  }
 }
