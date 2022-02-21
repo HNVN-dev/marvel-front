@@ -42,12 +42,23 @@ const ComicsCharacter = () => {
           <p>{data?.description}</p>
         </div>
       </div>
-      <section className="find-the-char">
-        <h2>You can find {data.name} in these comics</h2>
-      </section>
-      {data.comics.map((comic, index) => {
-        return <ComicsCardGrid comic={comic} key={comic._id} index={index} />;
-      })}
+      {data.comics.length > 0 ? (
+        <section className="comics-appears">
+          <h2>You can find {data.name} here </h2>
+        </section>
+      ) : (
+        <section className="comics-appears">
+          <h2>Sorry, we will update the informations soon !</h2>
+        </section>
+      )}
+      {data?.comics &&
+        data.comics.map((comic, index) => {
+          return (
+            <>
+              <ComicsCardGrid comic={comic} key={comic._id} index={index} />
+            </>
+          );
+        })}
     </main>
   );
 };
