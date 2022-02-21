@@ -30,8 +30,10 @@
 .comics-hero {
   margin-bottom: 80px;
 }
-.comics-img-container {
-  width: 60%;
+.comics-img-container,
+.characters-img-container {
+  width: 100%;
+  text-align: center;
 }
 .characters-img-container img,
 .comics-img-container img {
@@ -75,11 +77,6 @@
   }
   .comics-hero {
     flex-direction: column;
-  }
-
-  .characters-hero,
-  .comics-hero {
-    text-align: center;
   }
 
   .comics-img-container {

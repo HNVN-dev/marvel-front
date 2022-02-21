@@ -13,8 +13,12 @@ footer {
   margin: 0 auto;
 }
 
-.logo-container {
-  height: 60px;
+.footer-logo-container {
+  height: 40px;
+}
+
+.footer-logo-container img {
+  width: 100px;
 }
 
 .footer-credit {
