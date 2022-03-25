@@ -7,12 +7,15 @@ import axios from "axios";
 import ComicsCardGrid from "../ComicsCardGrid/ComicsCardGrid";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
-const FavoritesComics = () => {
+const FavoritesComics = (
+  favComics,
+  filteredFavComics,
+  setFilteredFavComics
+) => {
   // This component appears in Favorites page
 
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const favComicsData = window.localStorage.comics;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,17 +34,37 @@ const FavoritesComics = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const newFilteredFavComics = [...filteredFavComics];
+
+    if (favComics.length > 0) {
+      data?.results.forEach((elem) => {
+        const exist = newFilteredFavComics.find(
+          (filteredElem) => filteredElem._id === elem._id
+        );
+        if (favComics.includes(elem._id) && exist === undefined) {
+          newFilteredFavComics.push(elem);
+          setFilteredFavComics(newFilteredFavComics);
+        }
+      });
+    }
+  }, [filteredFavComics, data]);
+
   return isLoading ? (
     <LoadingSpinner />
-  ) : favComicsData?.length > 0 ? (
+  ) : filteredFavComics?.length > 0 ? (
     <div className="user-favorites-container">
       <h2>My Favorites Comics</h2>
       <div className="user-favorites">
-        {data.results.map((comic) => {
+        {filteredFavComics?.map((comic) => {
           return (
-            favComicsData?.includes(comic?._id) && (
-              <ComicsCardGrid comic={comic} key={comic._id} />
-            )
+            <ComicsCardGrid
+              comic={comic}
+              key={`fav ${comic._id}`}
+              favComics={favComics}
+              filteredFavComics={filteredFavComics}
+              setFilteredFavComics={setFilteredFavComics}
+            />
           );
         })}
       </div>

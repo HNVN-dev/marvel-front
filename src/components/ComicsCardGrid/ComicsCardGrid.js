@@ -1,10 +1,24 @@
 import "../ComicsCardGrid/ComicsCardGrid.css";
 
-const ComicsCardGrid = ({ comic, index }) => {
-  // this component appear in Comics Grid Catalog component & FavoritesComics component
-  const favComicsData = window.localStorage.comics;
+import { useState, useEffect } from "react";
 
-  const addFavComic = () => {
+const ComicsCardGrid = ({
+  comic,
+  favComics,
+  filteredFavComics,
+  setFilteredFavComics,
+}) => {
+  // this component appear in Comics Grid Catalog component & FavoritesComics component
+
+  const [addedToFav, setAddedToFav] = useState(false);
+
+  useEffect(() => {
+    if (favComics?.includes(comic._id)) {
+      setAddedToFav(true);
+    }
+  }, [favComics, addedToFav]);
+
+  /*  const addFavComic = () => {
     const addFavComicData = window.localStorage.comics
       ? window.localStorage.comics.split(",")
       : [];
@@ -16,13 +30,50 @@ const ComicsCardGrid = ({ comic, index }) => {
     } else {
       console.log("Comic already added");
     }
+  }; */
+
+  const addFavComic = () => {
+    const newFilteredFavComics = [...filteredFavComics];
+
+    const addedFavComic = window.localStorage.comics
+      ? window.localStorage.comics.split(",")
+      : [];
+
+    if (!filteredFavComics?.includes(comic.id)) {
+      newFilteredFavComics?.push(comic);
+      setFilteredFavComics(newFilteredFavComics);
+    }
+
+    if (!addedFavComic.includes(comic._id)) {
+      addedFavComic.push(comic._id);
+      window.localStorage.comics = addedFavComic;
+    }
+    setAddedToFav(true);
   };
 
-  const deleteComic = () => {
+  /* const deleteComic = () => {
     const RemoveFavComicData = window.localStorage.comics.split(",");
     const newComicData = RemoveFavComicData.filter((id) => id !== comic._id);
     window.localStorage.comics = newComicData;
     window.location.reload();
+  }; */
+
+  const deleteComic = () => {
+    const newFilteredFavComics = [...filteredFavComics];
+
+    // Remove from the localStorage
+    const removeFavComic = window.localStorage.comics.split(",");
+    const newCharData = removeFavComic.filter((id) => id !== comic._id);
+    window.localStorage.comics = newCharData;
+
+    // Remove from the filtered Array
+    if (favComics?.includes(comic._id)) {
+      const index = newFilteredFavComics.indexOf(comic);
+      newFilteredFavComics.splice(index, 1);
+      setFilteredFavComics(newFilteredFavComics);
+    }
+
+    setAddedToFav(false);
   };
 
   return (
@@ -48,7 +99,7 @@ const ComicsCardGrid = ({ comic, index }) => {
           )}
         </div>
         <div className="fav-button-container">
-          {!favComicsData?.includes(comic._id) ? (
+          {!addedToFav ? (
             <button
               className="fav-btn"
               onClick={(event) => {

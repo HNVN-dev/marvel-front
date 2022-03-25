@@ -19,23 +19,10 @@ const CharacterCardGrid = ({
     }
   }, [favCharacters, addedToFav]);
 
-  /*  const addFavCharacter = () => {
-    const addedFavCharacterData = window.localStorage.characters
-      ? window.localStorage.characters.split(",")
-      : [];
-
-    if (!addedFavCharacterData.includes(data._id)) {
-      addedFavCharacterData.push(data._id);
-      window.localStorage.characters = addedFavCharacterData;
-      setAddedToFav(true);
-    } else {
-      console.log("Character already added");
-    }
-  }; */
   const addFavCharacter = () => {
     const newFilteredFavCharacters = [...filteredFavCharacters];
 
-    const addedFavCharacterData = window.localStorage.characters
+    const addedFavCharacter = window.localStorage.characters
       ? window.localStorage.characters.split(",")
       : [];
 
@@ -44,34 +31,25 @@ const CharacterCardGrid = ({
       setFilteredFavCharacters(newFilteredFavCharacters);
     }
 
-    if (!addedFavCharacterData.includes(data._id)) {
-      addedFavCharacterData.push(data._id);
-      window.localStorage.characters = addedFavCharacterData;
+    if (!addedFavCharacter.includes(data._id)) {
+      addedFavCharacter.push(data._id);
+      window.localStorage.characters = addedFavCharacter;
     }
-
     setAddedToFav(true);
   };
-
-  /*   const deleteCharacter = () => {
-    const removeFavCharData = window.localStorage.characters.split(",");
-    const newCharData = removeFavCharData.filter((id) => id !== data._id);
-    window.localStorage.characters = newCharData;
-    setAddedToFav(false);
-  }; */
 
   const deleteCharacter = () => {
     const newFilteredFavCharacters = [...filteredFavCharacters];
 
     // Remove from the localStorage
-    const removeFavCharData = window.localStorage.characters.split(",");
-    const newCharData = removeFavCharData.filter((id) => id !== data._id);
+    const removeFavChar = window.localStorage.characters.split(",");
+    const newCharData = removeFavChar.filter((id) => id !== data._id);
     window.localStorage.characters = newCharData;
 
     // Remove from the filtered Array
     if (favCharacters?.includes(data._id)) {
       const index = newFilteredFavCharacters.indexOf(data);
       newFilteredFavCharacters.splice(index, 1);
-      console.log(filteredFavCharacters);
       setFilteredFavCharacters(newFilteredFavCharacters);
     }
 

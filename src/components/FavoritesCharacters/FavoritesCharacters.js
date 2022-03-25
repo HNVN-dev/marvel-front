@@ -15,8 +15,8 @@ const FavoritesCharacters = ({
   // This component appears in Favorites page
 
   const [data, setData] = useState();
-
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,7 +33,6 @@ const FavoritesCharacters = ({
     fetchData();
   }, []);
 
-  console.log(favCharacters);
   useEffect(() => {
     const newFilteredFavCharacters = [...filteredFavCharacters];
 

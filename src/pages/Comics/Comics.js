@@ -9,7 +9,15 @@ import Searchbar from "../../components/Searchbar/Searchbar";
 import ComicsGridCatalog from "../../components/ComicsGridCatalog/ComicsGridCatalog";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
-const Comics = ({ isActive, setIsActive, easySearch, setEasySearch }) => {
+const Comics = ({
+  isActive,
+  setIsActive,
+  easySearch,
+  setEasySearch,
+  filteredFavComics,
+  setFilteredFavComics,
+  favComics,
+}) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -54,7 +62,12 @@ const Comics = ({ isActive, setIsActive, easySearch, setEasySearch }) => {
         setEasySearch={setEasySearch}
       />
       <div className="comics-container">
-        <ComicsGridCatalog data={data} />
+        <ComicsGridCatalog
+          data={data}
+          filteredFavComics={filteredFavComics}
+          setFilteredFavComics={setFilteredFavComics}
+          favComics={favComics}
+        />
       </div>
       <ReactPaginate
         containerClassName={"page-navigation"}

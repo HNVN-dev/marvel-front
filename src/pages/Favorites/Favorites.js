@@ -9,6 +9,9 @@ const Favorites = ({
   favCharacters,
   filteredFavCharacters,
   setFilteredFavCharacters,
+  favComics,
+  filteredFavComics,
+  setFilteredFavComics,
 }) => {
   const [favorite, setFavorite] = useState(false);
 
@@ -30,7 +33,11 @@ const Favorites = ({
         </h2>
       </div>
       {favorite ? (
-        <FavoritesComics />
+        <FavoritesComics
+          favComics={favComics}
+          filteredFavComics={filteredFavComics}
+          setFilteredFavComics={setFilteredFavComics}
+        />
       ) : (
         <FavoritesCharacters
           favCharacters={favCharacters}
