@@ -7,11 +7,11 @@ import axios from "axios";
 import ComicsCardGrid from "../ComicsCardGrid/ComicsCardGrid";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
-const FavoritesComics = (
+const FavoritesComics = ({
   favComics,
   filteredFavComics,
-  setFilteredFavComics
-) => {
+  setFilteredFavComics,
+}) => {
   // This component appears in Favorites page
 
   const [data, setData] = useState();
