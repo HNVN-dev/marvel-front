@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import CharacterCardGrid from "../CharacterCardGrid/CharacterCardGrid";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 const FavoritesCharacters = () => {
   const [data, setData] = useState();
@@ -29,7 +30,7 @@ const FavoritesCharacters = () => {
   }, []);
 
   return isLoading ? (
-    <div></div>
+    <LoadingSpinner />
   ) : favCharactersData?.length > 0 ? (
     <div className="user-favorites-container">
       <h2>My Favorites Characters</h2>

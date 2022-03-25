@@ -1,9 +1,9 @@
 import "../Favorites/Favorites.css";
 
+import { useState } from "react";
+
 import FavoritesComics from "../../components/FavoritesComics/FavoritesComics";
 import FavoritesCharacters from "../../components/FavoritesCharacters/FavoritesCharacters";
-
-import { useState } from "react";
 
 const Favorites = () => {
   const [favorite, setFavorite] = useState(false);

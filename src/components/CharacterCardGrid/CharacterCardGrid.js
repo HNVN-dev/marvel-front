@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 const CharacterCardGrid = ({ data, index }) => {
   // This component appear in components => CharactersGridCatalog
   const favCharactersData = window.localStorage.characters;
-  console.log(favCharactersData);
 
   const addFavCharacter = () => {
     const addFavCharacterData = window.localStorage.characters
@@ -45,7 +44,7 @@ const CharacterCardGrid = ({ data, index }) => {
           <div className="inner">
             {data?.description?.length > 100 ? (
               <p>
-                {`${data?.description.slice(0, 100)}...`}{" "}
+                {`${data?.description.slice(0, 100)}...`}
                 <button>See more</button>
               </p>
             ) : data.description?.length < 50 &&

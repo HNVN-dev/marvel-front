@@ -9,7 +9,7 @@ import Cookies from "js-cookie";
 
 // Pages
 
-import Home from "./pages/Homefolder/Home";
+import Home from "./pages/Home/Home";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Notfound from "./pages/Notfound";

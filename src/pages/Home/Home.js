@@ -1,4 +1,4 @@
-import "../Homefolder/Home.css";
+import "./Home.css";
 
 import HomeSearch from "../../components/HomeSearch/HomeSearch";
 import { useLocation, Link } from "react-router-dom";

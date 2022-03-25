@@ -1,10 +1,13 @@
-import ComicsGridCatalog from "../../components/ComicsGridCatalog/ComicsGridCatalog";
-import { useState, useEffect } from "react";
-import ReactPaginate from "react-paginate";
-import axios from "axios";
 import "./Comics.css";
-import Searchbar from "../../components/Searchbar/Searchbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { useState, useEffect } from "react";
+import axios from "axios";
+import ReactPaginate from "react-paginate";
+
+import Searchbar from "../../components/Searchbar/Searchbar";
+import ComicsGridCatalog from "../../components/ComicsGridCatalog/ComicsGridCatalog";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const Comics = ({ isActive, setIsActive, easySearch, setEasySearch }) => {
   const [data, setData] = useState();
@@ -41,7 +44,7 @@ const Comics = ({ isActive, setIsActive, easySearch, setEasySearch }) => {
   }
 
   return isLoading ? (
-    <div></div>
+    <LoadingSpinner />
   ) : (
     <main onMouseEnter={() => setEasySearch(false)}>
       <Searchbar

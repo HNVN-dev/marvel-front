@@ -5,11 +5,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import ComicsCardGrid from "../ComicsCardGrid/ComicsCardGrid";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 const FavoritesComics = () => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const favComicsData = window.localStorage.comics;
+  console.log(favComicsData);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +31,7 @@ const FavoritesComics = () => {
   }, []);
 
   return isLoading ? (
-    <div></div>
+    <LoadingSpinner />
   ) : favComicsData?.length > 0 ? (
     <div className="user-favorites-container">
       <h2>My Favorites Comics</h2>

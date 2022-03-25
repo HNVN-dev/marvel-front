@@ -1,10 +1,13 @@
-import CharactersGridCatalog from "../../components/CharactersGridCatalog/CharactersGridCatalog";
+import "./Characters.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
-import "./Characters.css";
+
 import Searchbar from "../../components/Searchbar/Searchbar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CharactersGridCatalog from "../../components/CharactersGridCatalog/CharactersGridCatalog";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const Characters = ({ isActive, setIsActive, easySearch, setEasySearch }) => {
   const [data, setData] = useState();
@@ -32,15 +35,14 @@ const Characters = ({ isActive, setIsActive, easySearch, setEasySearch }) => {
         console.log(error.response);
       }
     };
+    if (easySearch) {
+      setIsActive(true);
+    }
     fetchData();
-  }, [page, name]);
-  console.log(easySearch);
-  if (easySearch) {
-    setIsActive(true);
-  }
+  }, [page, name, easySearch]);
 
   return isLoading ? (
-    <div className="loading"></div>
+    <LoadingSpinner />
   ) : (
     <main onMouseEnter={() => setEasySearch(false)}>
       <Searchbar
