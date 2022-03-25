@@ -1,28 +1,81 @@
 import "./CharacterCardGrid.css";
-import { Link } from "react-router-dom";
-const CharacterCardGrid = ({ data, index }) => {
-  // This component appear in components => CharactersGridCatalog
-  const favCharactersData = window.localStorage.characters;
 
-  const addFavCharacter = () => {
-    const addFavCharacterData = window.localStorage.characters
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
+const CharacterCardGrid = ({
+  data,
+  favCharacters,
+  filteredFavCharacters,
+  setFilteredFavCharacters,
+}) => {
+  // This component appear in components => CharactersGridCatalog
+
+  const [addedToFav, setAddedToFav] = useState(false);
+
+  useEffect(() => {
+    if (favCharacters?.includes(data._id)) {
+      setAddedToFav(true);
+    }
+  }, [favCharacters, addedToFav]);
+
+  /*  const addFavCharacter = () => {
+    const addedFavCharacterData = window.localStorage.characters
       ? window.localStorage.characters.split(",")
       : [];
 
-    if (!addFavCharacterData.includes(data._id.toString())) {
-      addFavCharacterData.push(data._id);
-      window.localStorage.characters = addFavCharacterData;
-      window.location.reload();
+    if (!addedFavCharacterData.includes(data._id)) {
+      addedFavCharacterData.push(data._id);
+      window.localStorage.characters = addedFavCharacterData;
+      setAddedToFav(true);
     } else {
       console.log("Character already added");
     }
+  }; */
+  const addFavCharacter = () => {
+    const newFilteredFavCharacters = [...filteredFavCharacters];
+
+    const addedFavCharacterData = window.localStorage.characters
+      ? window.localStorage.characters.split(",")
+      : [];
+
+    if (!filteredFavCharacters?.includes(data.id)) {
+      newFilteredFavCharacters?.push(data);
+      setFilteredFavCharacters(newFilteredFavCharacters);
+    }
+
+    if (!addedFavCharacterData.includes(data._id)) {
+      addedFavCharacterData.push(data._id);
+      window.localStorage.characters = addedFavCharacterData;
+    }
+
+    setAddedToFav(true);
   };
 
-  const deleteCharacter = () => {
-    const RemoveFavCharData = window.localStorage.characters.split(",");
-    const newCharData = RemoveFavCharData.filter((id) => id !== data._id);
+  /*   const deleteCharacter = () => {
+    const removeFavCharData = window.localStorage.characters.split(",");
+    const newCharData = removeFavCharData.filter((id) => id !== data._id);
     window.localStorage.characters = newCharData;
-    window.location.reload();
+    setAddedToFav(false);
+  }; */
+
+  const deleteCharacter = () => {
+    const newFilteredFavCharacters = [...filteredFavCharacters];
+
+    // Remove from the localStorage
+    const removeFavCharData = window.localStorage.characters.split(",");
+    const newCharData = removeFavCharData.filter((id) => id !== data._id);
+    window.localStorage.characters = newCharData;
+
+    // Remove from the filtered Array
+    if (favCharacters?.includes(data._id)) {
+      const index = newFilteredFavCharacters.indexOf(data);
+      newFilteredFavCharacters.splice(index, 1);
+      console.log(filteredFavCharacters);
+      setFilteredFavCharacters(newFilteredFavCharacters);
+    }
+
+    setAddedToFav(false);
   };
 
   return (
@@ -59,12 +112,24 @@ const CharacterCardGrid = ({ data, index }) => {
           </div>
         </Link>
         <div className="fav-button-container">
-          {!favCharactersData?.includes(data._id) ? (
-            <button className="fav-btn" onClick={() => addFavCharacter()}>
+          {!addedToFav ? (
+            <button
+              className="fav-btn"
+              onClick={(event) => {
+                addFavCharacter();
+                event.stopPropagation();
+              }}
+            >
               Add to favorites
             </button>
           ) : (
-            <button className="fav-btn" onClick={() => deleteCharacter()}>
+            <button
+              className="fav-btn"
+              onClick={(event) => {
+                deleteCharacter();
+                event.stopPropagation();
+              }}
+            >
               Remove from Favorites
             </button>
           )}

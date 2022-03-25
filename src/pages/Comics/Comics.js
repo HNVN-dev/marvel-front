@@ -20,7 +20,6 @@ const Comics = ({ isActive, setIsActive, easySearch, setEasySearch }) => {
     setPage(event.selected + 1);
   };
 
-  console.log("toi");
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -35,7 +34,7 @@ const Comics = ({ isActive, setIsActive, easySearch, setEasySearch }) => {
         console.log(error.response);
       }
     };
-    console.log("booka");
+
     fetchData();
   }, [page, title]);
 

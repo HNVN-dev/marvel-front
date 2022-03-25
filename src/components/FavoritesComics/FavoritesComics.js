@@ -8,10 +8,11 @@ import ComicsCardGrid from "../ComicsCardGrid/ComicsCardGrid";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 const FavoritesComics = () => {
+  // This component appears in Favorites page
+
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const favComicsData = window.localStorage.comics;
-  console.log(favComicsData);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,7 +38,6 @@ const FavoritesComics = () => {
       <h2>My Favorites Comics</h2>
       <div className="user-favorites">
         {data.results.map((comic) => {
-          console.log(comic);
           return (
             favComicsData?.includes(comic?._id) && (
               <ComicsCardGrid comic={comic} key={comic._id} />

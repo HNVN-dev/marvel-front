@@ -32,6 +32,10 @@ function App() {
   const [isActive, setIsActive] = useState(false);
   const [homeIsActive, setHomeIsActive] = useState(false);
   const [easySearch, setEasySearch] = useState(false);
+  const [filteredFavCharacters, setFilteredFavCharacters] = useState([]);
+  const [filteredFavComics, setFilteredFavComics] = useState([]);
+
+  const favCharacters = window.localStorage.characters;
 
   const setUser = (token) => {
     if (token) {
@@ -73,10 +77,22 @@ function App() {
               setIsActive={setIsActive}
               easySearch={easySearch}
               setEasySearch={setEasySearch}
+              filteredFavCharacters={filteredFavCharacters}
+              setFilteredFavCharacters={setFilteredFavCharacters}
+              favCharacters={favCharacters}
             />
           }
         />
-        <Route path="/favorites" element={<Favorites />} />
+        <Route
+          path="/favorites"
+          element={
+            <Favorites
+              filteredFavCharacters={filteredFavCharacters}
+              setFilteredFavCharacters={setFilteredFavCharacters}
+              favCharacters={favCharacters}
+            />
+          }
+        />
         <Route
           path="/comics"
           element={

@@ -1,9 +1,11 @@
-import { useParams } from "react-router-dom";
+import "./ComicsCharacter.css";
+
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
-import "./ComicsCharacter.css";
 import ComicsCardGrid from "../../components/ComicsCardGrid/ComicsCardGrid";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const ComicsCharacter = () => {
   const [data, setData] = useState();
@@ -17,7 +19,7 @@ const ComicsCharacter = () => {
           `https://hnvn-marvel-backend.herokuapp.com/comics/${characterId}`
         );
         setData(response.data);
-        console.log(response.data);
+
         setIsLoading(false);
       } catch (error) {
         console.log(error.response);
@@ -27,7 +29,7 @@ const ComicsCharacter = () => {
   }, [characterId]);
 
   return isLoading ? (
-    <div></div>
+    <LoadingSpinner />
   ) : (
     <main className="comics-character-container">
       <div className="character-introduction">

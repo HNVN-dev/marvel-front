@@ -9,7 +9,15 @@ import Searchbar from "../../components/Searchbar/Searchbar";
 import CharactersGridCatalog from "../../components/CharactersGridCatalog/CharactersGridCatalog";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
-const Characters = ({ isActive, setIsActive, easySearch, setEasySearch }) => {
+const Characters = ({
+  isActive,
+  setIsActive,
+  easySearch,
+  setEasySearch,
+  filteredFavCharacters,
+  setFilteredFavCharacters,
+  favCharacters,
+}) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -53,7 +61,12 @@ const Characters = ({ isActive, setIsActive, easySearch, setEasySearch }) => {
         setEasySearch={setEasySearch}
       />
       <div className="characters-container">
-        <CharactersGridCatalog data={data} />
+        <CharactersGridCatalog
+          data={data}
+          favCharacters={favCharacters}
+          filteredFavCharacters={filteredFavCharacters}
+          setFilteredFavCharacters={setFilteredFavCharacters}
+        />
       </div>
       <div className="navigation-container">
         <div className="page-navigation">

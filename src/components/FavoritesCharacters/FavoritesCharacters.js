@@ -7,18 +7,22 @@ import axios from "axios";
 import CharacterCardGrid from "../CharacterCardGrid/CharacterCardGrid";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
-const FavoritesCharacters = () => {
-  const [data, setData] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-  const favCharactersData = window.localStorage.characters;
+const FavoritesCharacters = ({
+  favCharacters,
+  filteredFavCharacters,
+  setFilteredFavCharacters,
+}) => {
+  // This component appears in Favorites page
 
+  const [data, setData] = useState();
+
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
           `https://hnvn-marvel-backend.herokuapp.com/characters`
         );
-
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -29,18 +33,38 @@ const FavoritesCharacters = () => {
     fetchData();
   }, []);
 
+  console.log(favCharacters);
+  useEffect(() => {
+    const newFilteredFavCharacters = [...filteredFavCharacters];
+
+    if (favCharacters.length > 0) {
+      data?.results.forEach((elem) => {
+        const exist = newFilteredFavCharacters.find(
+          (filteredElem) => filteredElem._id === elem._id
+        );
+        if (favCharacters.includes(elem._id) && exist === undefined) {
+          newFilteredFavCharacters.push(elem);
+          setFilteredFavCharacters(newFilteredFavCharacters);
+        }
+      });
+    }
+  }, [filteredFavCharacters, data]);
+
   return isLoading ? (
     <LoadingSpinner />
-  ) : favCharactersData?.length > 0 ? (
+  ) : filteredFavCharacters?.length > 0 ? (
     <div className="user-favorites-container">
       <h2>My Favorites Characters</h2>
       <div className="user-favorites">
-        {data.results.map((data) => {
-          console.log(data);
+        {filteredFavCharacters.map((data) => {
           return (
-            favCharactersData?.includes(data?._id) && (
-              <CharacterCardGrid data={data} key={data._id} />
-            )
+            <CharacterCardGrid
+              data={data}
+              key={`fav ${data._id}`}
+              favCharacters={favCharacters}
+              filteredFavCharacters={filteredFavCharacters}
+              setFilteredFavCharacters={setFilteredFavCharacters}
+            />
           );
         })}
       </div>

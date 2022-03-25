@@ -1,9 +1,8 @@
 import "../ComicsCardGrid/ComicsCardGrid.css";
 
 const ComicsCardGrid = ({ comic, index }) => {
-  // this component appear
+  // this component appear in Comics Grid Catalog component & FavoritesComics component
   const favComicsData = window.localStorage.comics;
-  console.log(favComicsData);
 
   const addFavComic = () => {
     const addFavComicData = window.localStorage.comics
@@ -50,11 +49,23 @@ const ComicsCardGrid = ({ comic, index }) => {
         </div>
         <div className="fav-button-container">
           {!favComicsData?.includes(comic._id) ? (
-            <button className="fav-btn" onClick={() => addFavComic()}>
+            <button
+              className="fav-btn"
+              onClick={(event) => {
+                addFavComic();
+                event.stopPropagation();
+              }}
+            >
               Add to favorites
             </button>
           ) : (
-            <button className="fav-btn" onClick={() => deleteComic()}>
+            <button
+              className="fav-btn"
+              onClick={(event) => {
+                deleteComic();
+                event.stopPropagation();
+              }}
+            >
               Remove from Favorites
             </button>
           )}
