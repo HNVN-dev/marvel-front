@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import CharacterCardGrid from "../CharacterCardGrid/CharacterCardGrid";
-import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 const FavoritesCharacters = ({
   favCharacters,
@@ -15,7 +14,6 @@ const FavoritesCharacters = ({
   // This component appears in Favorites page
 
   const [data, setData] = useState();
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +22,6 @@ const FavoritesCharacters = ({
           `https://hnvn-marvel-backend.herokuapp.com/characters`
         );
         setData(response.data);
-        setIsLoading(false);
       } catch (error) {
         console.log(error.response);
       }
@@ -49,9 +46,7 @@ const FavoritesCharacters = ({
     }
   }, [filteredFavCharacters, data, favCharacters, setFilteredFavCharacters]);
 
-  return isLoading ? (
-    <LoadingSpinner />
-  ) : filteredFavCharacters?.length > 0 ? (
+  return filteredFavCharacters?.length > 0 ? (
     <div className="user-favorites-container">
       <h2>My Favorites Characters</h2>
       <div className="user-favorites">

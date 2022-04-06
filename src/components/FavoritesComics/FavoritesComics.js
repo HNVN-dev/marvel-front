@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import ComicsCardGrid from "../ComicsCardGrid/ComicsCardGrid";
-import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 const FavoritesComics = ({
   favComics,
@@ -15,7 +14,6 @@ const FavoritesComics = ({
   // This component appears in Favorites page
 
   const [data, setData] = useState();
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,7 +23,6 @@ const FavoritesComics = ({
         );
 
         setData(response.data);
-        setIsLoading(false);
       } catch (error) {
         console.log(error.response);
       }
@@ -50,9 +47,7 @@ const FavoritesComics = ({
     }
   }, [filteredFavComics, data, favComics, setFilteredFavComics]);
 
-  return isLoading ? (
-    <LoadingSpinner />
-  ) : filteredFavComics?.length > 0 ? (
+  return filteredFavComics?.length > 0 ? (
     <div className="user-favorites-container">
       <h2>My Favorites Comics</h2>
       <div className="user-favorites">
