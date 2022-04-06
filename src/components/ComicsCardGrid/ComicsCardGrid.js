@@ -16,7 +16,7 @@ const ComicsCardGrid = ({
     if (favComics?.includes(comic._id)) {
       setAddedToFav(true);
     }
-  }, [favComics, addedToFav]);
+  }, [favComics, addedToFav, comic._id]);
 
   /*  const addFavComic = () => {
     const addFavComicData = window.localStorage.comics

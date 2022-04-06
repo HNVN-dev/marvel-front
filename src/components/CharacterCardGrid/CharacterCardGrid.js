@@ -17,7 +17,7 @@ const CharacterCardGrid = ({
     if (favCharacters?.includes(data._id)) {
       setAddedToFav(true);
     }
-  }, [favCharacters, addedToFav]);
+  }, [favCharacters, addedToFav, data._id]);
 
   const addFavCharacter = () => {
     const newFilteredFavCharacters = [...filteredFavCharacters];
