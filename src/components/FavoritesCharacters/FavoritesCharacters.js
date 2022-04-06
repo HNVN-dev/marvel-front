@@ -47,7 +47,7 @@ const FavoritesCharacters = ({
         }
       });
     }
-  }, [filteredFavCharacters, data]);
+  }, [filteredFavCharacters, data, favCharacters, setFilteredFavCharacters]);
 
   return isLoading ? (
     <LoadingSpinner />

@@ -48,7 +48,7 @@ const FavoritesComics = ({
         }
       });
     }
-  }, [filteredFavComics, data]);
+  }, [filteredFavComics, data, favComics, setFilteredFavComics]);
 
   return isLoading ? (
     <LoadingSpinner />
