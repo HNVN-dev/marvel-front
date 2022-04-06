@@ -18,20 +18,6 @@ const ComicsCardGrid = ({
     }
   }, [favComics, addedToFav, comic._id]);
 
-  /*  const addFavComic = () => {
-    const addFavComicData = window.localStorage.comics
-      ? window.localStorage.comics.split(",")
-      : [];
-
-    if (!addFavComicData.includes(comic._id.toString())) {
-      addFavComicData.push(comic._id);
-      window.localStorage.comics = addFavComicData;
-      window.location.reload();
-    } else {
-      console.log("Comic already added");
-    }
-  }; */
-
   const addFavComic = () => {
     const newFilteredFavComics = [...filteredFavComics];
 
