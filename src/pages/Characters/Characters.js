@@ -18,7 +18,7 @@ const Characters = ({
   setFilteredFavCharacters,
   favCharacters,
 }) => {
-  const [data, setData] = useState();
+  const [charData, setCharData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
@@ -29,7 +29,7 @@ const Characters = ({
   };
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCharData = async () => {
       try {
         const response = await axios.get(
           `https://hnvn-marvel-backend.herokuapp.com/characters?page=${page}&name=${name}`
@@ -37,7 +37,7 @@ const Characters = ({
 
         const limit = response.data.limit;
         setPageCount(Math.ceil(response.data.count / limit));
-        setData(response.data);
+        setCharData(response.data);
         setIsLoading(false);
       } catch (error) {
         console.log(error.response);
@@ -46,7 +46,7 @@ const Characters = ({
     if (easySearch) {
       setIsActive(true);
     }
-    fetchData();
+    fetchCharData();
   }, [page, name, easySearch, setIsActive]);
 
   return isLoading ? (
@@ -62,7 +62,7 @@ const Characters = ({
       />
       <div className="characters-container">
         <CharactersGridCatalog
-          data={data}
+          charData={charData}
           favCharacters={favCharacters}
           filteredFavCharacters={filteredFavCharacters}
           setFilteredFavCharacters={setFilteredFavCharacters}

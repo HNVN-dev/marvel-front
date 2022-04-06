@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const CharacterCardGrid = ({
-  data,
+  charData,
   favCharacters,
   filteredFavCharacters,
   setFilteredFavCharacters,
@@ -14,10 +14,10 @@ const CharacterCardGrid = ({
   const [addedToFav, setAddedToFav] = useState(false);
 
   useEffect(() => {
-    if (favCharacters?.includes(data._id)) {
+    if (favCharacters?.includes(charData?._id)) {
       setAddedToFav(true);
     }
-  }, [favCharacters, addedToFav, data._id]);
+  }, [favCharacters, addedToFav, charData?._id]);
 
   const addFavCharacter = () => {
     const newFilteredFavCharacters = [...filteredFavCharacters];
@@ -26,13 +26,13 @@ const CharacterCardGrid = ({
       ? window.localStorage.characters.split(",")
       : [];
 
-    if (!filteredFavCharacters?.includes(data.id)) {
-      newFilteredFavCharacters?.push(data);
+    if (!filteredFavCharacters?.includes(charData?.id)) {
+      newFilteredFavCharacters?.push(charData);
       setFilteredFavCharacters(newFilteredFavCharacters);
     }
 
-    if (!addedFavCharacter.includes(data._id)) {
-      addedFavCharacter.push(data._id);
+    if (!addedFavCharacter.includes(charData?._id)) {
+      addedFavCharacter.push(charData?._id);
       window.localStorage.characters = addedFavCharacter;
     }
     setAddedToFav(true);
@@ -43,12 +43,12 @@ const CharacterCardGrid = ({
 
     // Remove from the localStorage
     const removeFavChar = window.localStorage.characters.split(",");
-    const newCharData = removeFavChar.filter((id) => id !== data._id);
-    window.localStorage.characters = newCharData;
+    const newFavCharData = removeFavChar.filter((id) => id !== charData?._id);
+    window.localStorage.characters = newFavCharData;
 
     // Remove from the filtered Array
-    if (favCharacters?.includes(data._id)) {
-      const index = newFilteredFavCharacters.indexOf(data);
+    if (favCharacters?.includes(charData?._id)) {
+      const index = newFilteredFavCharacters.indexOf(charData);
       newFilteredFavCharacters.splice(index, 1);
       setFilteredFavCharacters(newFilteredFavCharacters);
     }
@@ -61,30 +61,30 @@ const CharacterCardGrid = ({
       <div className="front">
         <div className="img-container">
           <img
-            src={`${data?.thumbnail?.path}.${data?.thumbnail?.extension}`}
+            src={`${charData?.thumbnail?.path}.${charData?.thumbnail?.extension}`}
             alt=""
           />
         </div>
         <div className="inner">
-          <h3>{data?.name}</h3>
+          <h3>{charData?.name}</h3>
         </div>
       </div>
 
       <div className="back">
-        <Link to={`/comics/${data?._id}`}>
+        <Link to={`/comics/${charData?._id}`}>
           <div className="inner">
-            {data?.description?.length > 100 ? (
+            {charData?.description?.length > 100 ? (
               <p>
-                {`${data?.description.slice(0, 100)}...`}
+                {`${charData?.description.slice(0, 100)}...`}
                 <button>See more</button>
               </p>
-            ) : data.description?.length < 50 &&
-              data?.description?.length !== 0 ? (
-              <p>{data?.description}</p>
+            ) : charData?.description?.length < 50 &&
+              charData?.description?.length !== 0 ? (
+              <p>{charData?.description}</p>
             ) : (
               <p>
                 There's no information for the moment. Please click to check
-                more infos about {data?.name}
+                more infos about {charData?.name}
               </p>
             )}
           </div>

@@ -3,7 +3,7 @@ import "./CharactersGridCatalog.css";
 import CharacterCardGrid from "../CharacterCardGrid/CharacterCardGrid";
 
 const CharactersGridCatalog = ({
-  data,
+  charData,
   favCharacters,
   filteredFavCharacters,
   setFilteredFavCharacters,
@@ -11,10 +11,10 @@ const CharactersGridCatalog = ({
   // This component appear in pages => Characters
   return (
     <div className="grid-catalog-container">
-      {data.results.map((data, index) => {
+      {charData.results.map((charData, index) => {
         return (
           <CharacterCardGrid
-            data={data}
+            charData={charData}
             index={index}
             key={index}
             filteredFavCharacters={filteredFavCharacters}

@@ -1,41 +1,22 @@
 import "../../pages/Favorites/Favorites.css";
 
-import { useState, useEffect } from "react";
-
-import axios from "axios";
+import { useEffect } from "react";
 
 import ComicsCardGrid from "../ComicsCardGrid/ComicsCardGrid";
 
 const FavoritesComics = ({
+  comicsData,
   favComics,
   filteredFavComics,
   setFilteredFavComics,
 }) => {
   // This component appears in Favorites page
 
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://hnvn-marvel-backend.herokuapp.com/comics`
-        );
-
-        setData(response.data);
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   useEffect(() => {
     const newFilteredFavComics = [...filteredFavComics];
 
     if (favComics.length > 0) {
-      data?.results.forEach((elem) => {
+      comicsData?.results.forEach((elem) => {
         const exist = newFilteredFavComics.find(
           (filteredElem) => filteredElem._id === elem._id
         );
@@ -45,7 +26,7 @@ const FavoritesComics = ({
         }
       });
     }
-  }, [filteredFavComics, data, favComics, setFilteredFavComics]);
+  }, [filteredFavComics, comicsData, favComics, setFilteredFavComics]);
 
   return filteredFavComics?.length > 0 ? (
     <div className="user-favorites-container">

@@ -84,19 +84,7 @@ function App() {
             />
           }
         />
-        <Route
-          path="/favorites"
-          element={
-            <Favorites
-              filteredFavCharacters={filteredFavCharacters}
-              setFilteredFavCharacters={setFilteredFavCharacters}
-              favCharacters={favCharacters}
-              filteredFavComics={filteredFavComics}
-              setFilteredFavComics={setFilteredFavComics}
-              favComics={favComics}
-            />
-          }
-        />
+        <Route path="/comics/:characterId" element={<ComicsCharacter />} />
         <Route
           path="/comics"
           element={
@@ -111,8 +99,19 @@ function App() {
             />
           }
         />
-
-        <Route path="/comics/:characterId" element={<ComicsCharacter />} />
+        <Route
+          path="/favorites"
+          element={
+            <Favorites
+              filteredFavCharacters={filteredFavCharacters}
+              setFilteredFavCharacters={setFilteredFavCharacters}
+              favCharacters={favCharacters}
+              filteredFavComics={filteredFavComics}
+              setFilteredFavComics={setFilteredFavComics}
+              favComics={favComics}
+            />
+          }
+        />
       </Routes>
       <Footer />
     </Router>

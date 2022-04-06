@@ -1,40 +1,22 @@
 import "../../pages/Favorites/Favorites.css";
 
-import { useState, useEffect } from "react";
-
-import axios from "axios";
+import { useEffect } from "react";
 
 import CharacterCardGrid from "../CharacterCardGrid/CharacterCardGrid";
 
 const FavoritesCharacters = ({
+  charData,
   favCharacters,
   filteredFavCharacters,
   setFilteredFavCharacters,
 }) => {
   // This component appears in Favorites page
 
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://hnvn-marvel-backend.herokuapp.com/characters`
-        );
-        setData(response.data);
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   useEffect(() => {
     const newFilteredFavCharacters = [...filteredFavCharacters];
 
     if (favCharacters.length > 0) {
-      data?.results.forEach((elem) => {
+      charData?.results.forEach((elem) => {
         const exist = newFilteredFavCharacters.find(
           (filteredElem) => filteredElem._id === elem._id
         );
@@ -44,17 +26,22 @@ const FavoritesCharacters = ({
         }
       });
     }
-  }, [filteredFavCharacters, data, favCharacters, setFilteredFavCharacters]);
+  }, [
+    filteredFavCharacters,
+    charData,
+    favCharacters,
+    setFilteredFavCharacters,
+  ]);
 
   return filteredFavCharacters?.length > 0 ? (
     <div className="user-favorites-container">
       <h2>My Favorites Characters</h2>
       <div className="user-favorites">
-        {filteredFavCharacters.map((data) => {
+        {filteredFavCharacters.map((charData) => {
           return (
             <CharacterCardGrid
-              data={data}
-              key={`fav ${data._id}`}
+              charData={charData}
+              key={`fav ${charData._id}`}
               favCharacters={favCharacters}
               filteredFavCharacters={filteredFavCharacters}
               setFilteredFavCharacters={setFilteredFavCharacters}
