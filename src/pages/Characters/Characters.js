@@ -47,7 +47,7 @@ const Characters = ({
       setIsActive(true);
     }
     fetchData();
-  }, [page, name, easySearch]);
+  }, [page, name, easySearch, setIsActive]);
 
   return isLoading ? (
     <LoadingSpinner />
