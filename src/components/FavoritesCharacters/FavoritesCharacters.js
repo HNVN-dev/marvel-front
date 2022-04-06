@@ -15,12 +15,12 @@ const FavoritesCharacters = ({
   useEffect(() => {
     const newFilteredFavCharacters = [...filteredFavCharacters];
 
-    if (favCharacters.length > 0) {
+    if (favCharacters?.length > 0) {
       charData?.results.forEach((elem) => {
         const exist = newFilteredFavCharacters.find(
           (filteredElem) => filteredElem._id === elem._id
         );
-        if (favCharacters.includes(elem._id) && exist === undefined) {
+        if (favCharacters?.includes(elem._id) && exist === undefined) {
           newFilteredFavCharacters.push(elem);
           setFilteredFavCharacters(newFilteredFavCharacters);
         }
