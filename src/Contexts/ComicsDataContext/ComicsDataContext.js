@@ -33,7 +33,7 @@ const ComicsDataContextProvider = ({ children }) => {
   }, [page, title]);
 
   return (
-    <ComicsDataContextProvider
+    <ComicsDataContext.Provider
       value={{
         comicsData,
         isLoading,
@@ -46,7 +46,7 @@ const ComicsDataContextProvider = ({ children }) => {
       }}
     >
       {children}
-    </ComicsDataContextProvider>
+    </ComicsDataContext.Provider>
   );
 };
 

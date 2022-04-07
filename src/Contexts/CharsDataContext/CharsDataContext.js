@@ -15,7 +15,7 @@ const CharsDataContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const fetchCharData = async () => {
+    const fetchCharsData = async () => {
       try {
         const response = await axios.get(
           `https://hnvn-marvel-backend.herokuapp.com/characters?page=${page}&name=${name}`
@@ -29,7 +29,7 @@ const CharsDataContextProvider = ({ children }) => {
       }
     };
 
-    fetchCharData();
+    fetchCharsData();
   }, [page, name]);
 
   return (

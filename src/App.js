@@ -106,14 +106,18 @@ function App() {
         <Route
           path="/favorites"
           element={
-            <Favorites
-              filteredFavCharacters={filteredFavCharacters}
-              setFilteredFavCharacters={setFilteredFavCharacters}
-              favCharacters={favCharacters}
-              filteredFavComics={filteredFavComics}
-              setFilteredFavComics={setFilteredFavComics}
-              favComics={favComics}
-            />
+            <CharsDataContextProvider>
+              <ComicsDataContextProvider>
+                <Favorites
+                  filteredFavCharacters={filteredFavCharacters}
+                  setFilteredFavCharacters={setFilteredFavCharacters}
+                  favCharacters={favCharacters}
+                  filteredFavComics={filteredFavComics}
+                  setFilteredFavComics={setFilteredFavComics}
+                  favComics={favComics}
+                />
+              </ComicsDataContextProvider>
+            </CharsDataContextProvider>
           }
         />
       </Routes>

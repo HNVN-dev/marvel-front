@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import CharacterCardGrid from "../CharacterCardGrid/CharacterCardGrid";
 
 const FavoritesCharacters = ({
-  charData,
+  charsData,
   favCharacters,
   filteredFavCharacters,
   setFilteredFavCharacters,
@@ -16,7 +16,7 @@ const FavoritesCharacters = ({
     const newFilteredFavCharacters = [...filteredFavCharacters];
 
     if (favCharacters?.length > 0) {
-      charData?.results.forEach((elem) => {
+      charsData?.results.forEach((elem) => {
         const exist = newFilteredFavCharacters.find(
           (filteredElem) => filteredElem._id === elem._id
         );
@@ -28,7 +28,7 @@ const FavoritesCharacters = ({
     }
   }, [
     filteredFavCharacters,
-    charData,
+    charsData,
     favCharacters,
     setFilteredFavCharacters,
   ]);

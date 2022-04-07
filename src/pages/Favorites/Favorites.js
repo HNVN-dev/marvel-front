@@ -1,8 +1,9 @@
 import "../Favorites/Favorites.css";
 
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useContext } from "react";
 
+import { CharsDataContext } from "../../Contexts/CharsDataContext/CharsDataContext";
+import { ComicsDataContext } from "../../Contexts/ComicsDataContext/ComicsDataContext";
 import FavoritesComics from "../../components/FavoritesComics/FavoritesComics";
 import FavoritesCharacters from "../../components/FavoritesCharacters/FavoritesCharacters";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
@@ -16,48 +17,11 @@ const Favorites = ({
   setFilteredFavComics,
 }) => {
   const [favorite, setFavorite] = useState(false);
-  const [charData, setCharData] = useState();
-  const [comicsData, setComicsData] = useState();
-  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchCharData = async () => {
-      try {
-        const response = await axios.get(
-          `https://hnvn-marvel-backend.herokuapp.com/characters`
-        );
-        setCharData(response.data);
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
+  const charsDataConsumer = useContext(CharsDataContext);
+  const comicsDataConsumer = useContext(ComicsDataContext);
 
-    fetchCharData();
-  }, []);
-
-  useEffect(() => {
-    const fetchComicsData = async () => {
-      try {
-        const response = await axios.get(
-          `https://hnvn-marvel-backend.herokuapp.com/comics`
-        );
-
-        setComicsData(response.data);
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
-
-    fetchComicsData();
-  }, []);
-
-  useEffect(() => {
-    if (comicsData && charData) {
-      setIsLoading(false);
-    }
-  }, [comicsData, charData]);
-
-  return isLoading ? (
+  return charsDataConsumer.isLoading && comicsDataConsumer.isLoading ? (
     <LoadingSpinner />
   ) : (
     <>
@@ -78,14 +42,14 @@ const Favorites = ({
       </div>
       {favorite ? (
         <FavoritesComics
-          comicsData={comicsData}
+          comicsData={comicsDataConsumer.comicsData}
           favComics={favComics}
           filteredFavComics={filteredFavComics}
           setFilteredFavComics={setFilteredFavComics}
         />
       ) : (
         <FavoritesCharacters
-          charData={charData}
+          charsData={charsDataConsumer.CharsData}
           favCharacters={favCharacters}
           filteredFavCharacters={filteredFavCharacters}
           setFilteredFavCharacters={setFilteredFavCharacters}

@@ -14,7 +14,7 @@ const ComicsGridCatalog = ({
         return (
           <ComicsCardGrid
             comic={comic}
-            key={index}
+            key={comic._id}
             index={index}
             filteredFavComics={filteredFavComics}
             setFilteredFavComics={setFilteredFavComics}
