@@ -1,31 +1,12 @@
 import "./Home.css";
 
-import HomeSearch from "../../components/HomeSearch/HomeSearch";
-import { useLocation, Link } from "react-router-dom";
-import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import heroImg from "../../assets/img/marvel-banner.jpeg";
 import heroComicsImg from "../../assets/img/comics-banner.jpeg";
 
-const Home = ({
-  homeIsActive,
-  setHomeIsActive,
-  setIsActive,
-
-  setEasySearch,
-}) => {
-  const location = useLocation();
-
-  useEffect(() => {
-    setHomeIsActive(false);
-  }, [location, setHomeIsActive]);
+const Home = ({ setAltSearchIsActive }) => {
   return (
     <>
-      <HomeSearch
-        homeIsActive={homeIsActive}
-        setHomeIsActive={setHomeIsActive}
-        setIsActive={setIsActive}
-        setEasySearch={setEasySearch}
-      />
       <div className="home-container">
         <div className="characters-hero">
           <div className="characters-img-container">

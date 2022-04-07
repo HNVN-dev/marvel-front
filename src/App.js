@@ -30,7 +30,7 @@ library.add(faUser, faSearch, faArrowRight, faArrowLeft);
 function App() {
   const [token, setToken] = useState(Cookies.get("userToken") || null);
   const [isActive, setIsActive] = useState(false);
-  const [homeIsActive, setHomeIsActive] = useState(false);
+  const [altSearchIsActive, setAltSearchIsActive] = useState(false);
   const [easySearch, setEasySearch] = useState(false);
   const [filteredFavCharacters, setFilteredFavCharacters] = useState([]);
   const [filteredFavComics, setFilteredFavComics] = useState([]);
@@ -49,8 +49,10 @@ function App() {
   return (
     <Router>
       <Header
-        homeIsActive={homeIsActive}
-        setHomeIsActive={setHomeIsActive}
+        altSearchIsActive={altSearchIsActive}
+        setAltSearchIsActive={setAltSearchIsActive}
+        easySearch={easySearch}
+        setEasySearch={setEasySearch}
         isActive={isActive}
         setIsActive={setIsActive}
         setUser={setUser}
@@ -61,14 +63,7 @@ function App() {
         <Route path="*" element={<Notfound />} />
         <Route
           path="/"
-          element={
-            <Home
-              homeIsActive={homeIsActive}
-              setHomeIsActive={setHomeIsActive}
-              setIsActive={setIsActive}
-              setEasySearch={setEasySearch}
-            />
-          }
+          element={<Home setAltSearchIsActive={setAltSearchIsActive} />}
         />
         <Route
           path="/characters"

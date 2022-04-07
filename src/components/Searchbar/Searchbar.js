@@ -2,15 +2,7 @@ import "./Searchbar.css";
 
 import { useRef, useEffect } from "react";
 
-const Searchbar = ({
-  searched,
-  setter,
-  isActive,
-  setIsActive,
-  setHomeIsActive,
-  setEasySearch,
-  easySearch,
-}) => {
+const Searchbar = ({ searched, setter, isActive }) => {
   //Searchbar is called in : Characters & Comics pages
   const inputRef = useRef();
 

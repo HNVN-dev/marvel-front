@@ -15,7 +15,7 @@ const CharactersGridCatalog = ({
           <CharacterCardGrid
             charData={charData}
             index={index}
-            key={index}
+            key={charData._id}
             filteredFavCharacters={filteredFavCharacters}
             setFilteredFavCharacters={setFilteredFavCharacters}
             favCharacters={favCharacters}

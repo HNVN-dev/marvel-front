@@ -1,12 +1,16 @@
-import "./HomeSearch.css";
+import "./AltSearch.css";
 
 import { Link } from "react-router-dom";
 
-const HomeSearch = ({ homeIsActive, setIsActive, setEasySearch }) => {
+const AltSearch = ({ altSearchIsActive, setEasySearch }) => {
+  // This component appears in Header component
+
   return (
     <div
       className={
-        homeIsActive ? "home-search-container active" : "home-search-container"
+        altSearchIsActive
+          ? "alt-search-container active"
+          : "alt-search-container"
       }
     >
       <Link
@@ -25,4 +29,4 @@ const HomeSearch = ({ homeIsActive, setIsActive, setEasySearch }) => {
   );
 };
 
-export default HomeSearch;
+export default AltSearch;
