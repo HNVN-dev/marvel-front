@@ -1,13 +1,13 @@
 import "./Comics.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useContext, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 
 import Searchbar from "../../components/Searchbar/Searchbar";
 import ComicsGridCatalog from "../../components/ComicsGridCatalog/ComicsGridCatalog";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import { ComicsDataContext } from "../../Contexts/ComicsDataContext/ComicsDataContext";
 
 const Comics = ({
   isActive,
@@ -18,52 +18,28 @@ const Comics = ({
   setFilteredFavComics,
   favComics,
 }) => {
-  const [data, setData] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [pageCount, setPageCount] = useState(0);
-  const [title, setTitle] = useState("");
-
-  const handlePageClick = (event) => {
-    setPage(event.selected + 1);
-  };
+  const comicsDataConsumer = useContext(ComicsDataContext);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://hnvn-marvel-backend.herokuapp.com/comics?page=${page}&title=${title}`
-        );
-        const limit = response.data.limit;
-        setPageCount(Math.ceil(response.data.count / limit));
-        setData(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
+    if (easySearch) {
+      setIsActive(true);
+    }
+  });
 
-    fetchData();
-  }, [page, title]);
-
-  if (easySearch) {
-    setIsActive(true);
-  }
-
-  return isLoading ? (
+  return comicsDataConsumer.isLoading ? (
     <LoadingSpinner />
   ) : (
     <main onMouseEnter={() => setEasySearch(false)}>
       <Searchbar
-        searched={title}
-        setter={setTitle}
+        searched={comicsDataConsumer.title}
+        setter={comicsDataConsumer.setTitle}
         isActive={isActive}
         setIsActive={setIsActive}
         setEasySearch={setEasySearch}
       />
       <div className="comics-container">
         <ComicsGridCatalog
-          data={data}
+          comicsData={comicsDataConsumer.comicsData}
           filteredFavComics={filteredFavComics}
           setFilteredFavComics={setFilteredFavComics}
           favComics={favComics}
@@ -74,9 +50,9 @@ const Comics = ({
         activeClassName={"active"}
         nextLabel={<FontAwesomeIcon icon="arrow-right" />}
         previousLabel={<FontAwesomeIcon icon="arrow-left" />}
-        onPageChange={handlePageClick}
+        onPageChange={comicsDataConsumer.handlePageClick}
         pageRangeDisplayed={5}
-        pageCount={pageCount}
+        pageCount={comicsDataConsumer.pageCount}
       />
     </main>
   );

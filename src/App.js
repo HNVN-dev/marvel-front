@@ -1,11 +1,11 @@
 import "./App.css";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import { CharsDataContextProvider } from "./Contexts/CharsDataContext/CharsDataContext";
+import { ComicsDataContextProvider } from "./Contexts/ComicsDataContext/ComicsDataContext";
 // Dependencies
 
 import Cookies from "js-cookie";
-/* import { Helmet } from "react-helmet"; */
 
 // Pages
 
@@ -73,30 +73,34 @@ function App() {
         <Route
           path="/characters"
           element={
-            <Characters
-              isActive={isActive}
-              setIsActive={setIsActive}
-              easySearch={easySearch}
-              setEasySearch={setEasySearch}
-              filteredFavCharacters={filteredFavCharacters}
-              setFilteredFavCharacters={setFilteredFavCharacters}
-              favCharacters={favCharacters}
-            />
+            <CharsDataContextProvider>
+              <Characters
+                isActive={isActive}
+                setIsActive={setIsActive}
+                easySearch={easySearch}
+                setEasySearch={setEasySearch}
+                filteredFavCharacters={filteredFavCharacters}
+                setFilteredFavCharacters={setFilteredFavCharacters}
+                favCharacters={favCharacters}
+              />
+            </CharsDataContextProvider>
           }
         />
         <Route path="/comics/:characterId" element={<ComicsCharacter />} />
         <Route
           path="/comics"
           element={
-            <Comics
-              isActive={isActive}
-              setIsActive={setIsActive}
-              easySearch={easySearch}
-              setEasySearch={setEasySearch}
-              filteredFavComics={filteredFavComics}
-              setFilteredFavComics={setFilteredFavComics}
-              favComics={favComics}
-            />
+            <ComicsDataContextProvider>
+              <Comics
+                isActive={isActive}
+                setIsActive={setIsActive}
+                easySearch={easySearch}
+                setEasySearch={setEasySearch}
+                filteredFavComics={filteredFavComics}
+                setFilteredFavComics={setFilteredFavComics}
+                favComics={favComics}
+              />
+            </ComicsDataContextProvider>
           }
         />
         <Route

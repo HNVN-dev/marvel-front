@@ -1,9 +1,10 @@
 import "./Characters.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useContext, useEffect } from "react";
+
 import ReactPaginate from "react-paginate";
+import { CharsDataContext } from "../../Contexts/CharsDataContext/CharsDataContext";
 
 import Searchbar from "../../components/Searchbar/Searchbar";
 import CharactersGridCatalog from "../../components/CharactersGridCatalog/CharactersGridCatalog";
@@ -11,58 +12,36 @@ import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const Characters = ({
   isActive,
-  setIsActive,
   easySearch,
+  setIsActive,
   setEasySearch,
   filteredFavCharacters,
   setFilteredFavCharacters,
   favCharacters,
 }) => {
-  const [charData, setCharData] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [pageCount, setPageCount] = useState(0);
-  const [name, setName] = useState("");
+  const charsDataConsumer = useContext(CharsDataContext);
 
-  const handlePageClick = (event) => {
-    setPage(event.selected + 1);
-  };
-
+  // Open the searchbar auto when the user clicked on "Characters" in the searchbar at the homepage
   useEffect(() => {
-    const fetchCharData = async () => {
-      try {
-        const response = await axios.get(
-          `https://hnvn-marvel-backend.herokuapp.com/characters?page=${page}&name=${name}`
-        );
-
-        const limit = response.data.limit;
-        setPageCount(Math.ceil(response.data.count / limit));
-        setCharData(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
     if (easySearch) {
       setIsActive(true);
     }
-    fetchCharData();
-  }, [page, name, easySearch, setIsActive]);
+  });
 
-  return isLoading ? (
+  return charsDataConsumer.isLoading ? (
     <LoadingSpinner />
   ) : (
     <main onMouseEnter={() => setEasySearch(false)}>
       <Searchbar
-        searched={name}
-        setter={setName}
+        searched={charsDataConsumer.name}
+        setter={charsDataConsumer.setName}
         isActive={isActive}
         setIsActive={setIsActive}
         setEasySearch={setEasySearch}
       />
       <div className="characters-container">
         <CharactersGridCatalog
-          charData={charData}
+          charsData={charsDataConsumer.charsData}
           favCharacters={favCharacters}
           filteredFavCharacters={filteredFavCharacters}
           setFilteredFavCharacters={setFilteredFavCharacters}
@@ -76,9 +55,9 @@ const Characters = ({
             nextLabel={<FontAwesomeIcon icon="arrow-right" />}
             previousLabel={<FontAwesomeIcon icon="arrow-left" />}
             renderOnZeroPageCount={null}
-            onPageChange={handlePageClick}
+            onPageChange={charsDataConsumer.handlePageClick}
             pageRangeDisplayed={5}
-            pageCount={pageCount}
+            pageCount={charsDataConsumer.pageCount}
           />
         </div>
       </div>
