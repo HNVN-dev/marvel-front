@@ -15,7 +15,7 @@ const FavoritesComics = ({
   useEffect(() => {
     const newFilteredFavComics = [...filteredFavComics];
 
-    if (favComics.length > 0) {
+    if (favComics?.length > 0) {
       comicsData?.results.forEach((elem) => {
         const exist = newFilteredFavComics.find(
           (filteredElem) => filteredElem._id === elem._id

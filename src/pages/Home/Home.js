@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import heroImg from "../../assets/img/marvel-banner.jpeg";
 import heroComicsImg from "../../assets/img/comics-banner.jpeg";
 
-const Home = ({ setAltSearchIsActive }) => {
+const Home = () => {
   return (
     <>
       <div className="home-container">
