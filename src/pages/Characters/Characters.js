@@ -31,7 +31,13 @@ const Characters = ({
   return charsDataConsumer.isLoading ? (
     <LoadingSpinner />
   ) : (
-    <main onMouseEnter={() => setEasySearch(false)}>
+    <main
+      onMouseEnter={() => {
+        if (easySearch) {
+          setEasySearch(false);
+        }
+      }}
+    >
       <Searchbar
         searched={charsDataConsumer.name}
         setter={charsDataConsumer.setName}
